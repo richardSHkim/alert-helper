@@ -24,5 +24,13 @@ def dummy():
 dummy()
 ```
 
+- Only alert when there is an error
+```python
+from alert_helper import alert
+
+with alert("test-job", on="error"):
+    # do something
+```
+
 ## To Do
 - [ ] Support other apps.
