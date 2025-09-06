@@ -9,7 +9,7 @@
 ```python
 from noticeme import noticeme
 
-with noticeme("test-job", verbose=True):
+with noticeme("test-job"):
     # do something
 ```
 
