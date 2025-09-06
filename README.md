@@ -7,7 +7,7 @@
 ## Usage
 - Context manager
 ```python
-from alert-helper import alert
+from alert_helper import alert
 
 with alert("test-job"):
     # do something
@@ -15,7 +15,7 @@ with alert("test-job"):
 
 - Decorator
 ```python
-from alert-helper import alert
+from alert_helper import alert
 
 @alert("test-job")
 def dummy():
