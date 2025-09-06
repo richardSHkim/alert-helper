@@ -7,17 +7,17 @@
 ## Usage
 - Context manager
 ```python
-from noticeme import noticeme
+from alert-helper import alert
 
-with noticeme("test-job"):
+with alert("test-job"):
     # do something
 ```
 
 - Decorator
 ```python
-from noticeme import noticeme
+from alert-helper import alert
 
-@noticeme("test-job")
+@alert("test-job")
 def dummy():
     # do something
 
