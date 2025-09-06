@@ -326,8 +326,8 @@ wheels = [
 ]
 
 [[package]]
-name = "notice-me"
-version = "0.1.0"
+name = "notice-helper"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "requests" },
