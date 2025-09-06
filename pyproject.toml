@@ -1,6 +1,6 @@
 [project]
 name = "alert-helper"
-version = "0.1.2"
+version = "0.1.4"
 description = "Simple python notification helper."
 readme = "README.md"
 authors = [
