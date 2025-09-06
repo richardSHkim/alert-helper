@@ -1,5 +1,5 @@
 [project]
-name = "notice-me"
+name = "notice-helper"
 version = "0.1.0"
 description = "Simple python notification helper."
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-notice-me = "notice_me:main"
+notice-helper = "notice_helper:main"
 
 [build-system]
 requires = ["uv_build>=0.8.5,<0.9.0"]
@@ -23,4 +23,5 @@ dev = [
     "pytest>=8.4.2",
     "pytest-mock>=3.15.0",
     "ruff>=0.12.12",
+    "twine>=6.2.0",
 ]

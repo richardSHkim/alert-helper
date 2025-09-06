@@ -1,5 +1,5 @@
 import pytest
-from notice_me import notice
+from notice_helper import notice
 
 
 def test_noticeme_decorator_success():
