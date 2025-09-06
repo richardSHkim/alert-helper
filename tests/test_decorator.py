@@ -1,9 +1,9 @@
 import pytest
-from notice_helper import notice
+from alert_helper import alert
 
 
 def test_noticeme_decorator_success():
-    @notice("test-job")
+    @alert("test-job")
     def dummy():
         x = 1
         x += 1
@@ -12,7 +12,7 @@ def test_noticeme_decorator_success():
 
 
 def test_noticeme_decorator_error():
-    @notice("test-job")
+    @alert("test-job")
     def dummy():
         with pytest.raises(ValueError):
             raise ValueError("boom")

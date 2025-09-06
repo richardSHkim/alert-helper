@@ -1,5 +1,5 @@
 [project]
-name = "notice-helper"
+name = "alert-helper"
 version = "0.1.1"
 description = "Simple python notification helper."
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-notice-helper = "notice_helper:main"
+alert-helper = "alert_helper:main"
 
 [build-system]
 requires = ["uv_build>=0.8.5,<0.9.0"]
