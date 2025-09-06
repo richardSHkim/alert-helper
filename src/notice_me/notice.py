@@ -5,7 +5,7 @@ from .config import APP
 from .app import call_slack
 
 
-class noticeme:
+class notice:
     def __init__(
         self,
         text: str,

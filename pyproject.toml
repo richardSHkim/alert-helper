@@ -1,5 +1,5 @@
 [project]
-name = "noticeme"
+name = "notice-me"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-noticeme = "noticeme:main"
+notice-me = "notice_me:main"
 
 [build-system]
 requires = ["uv_build>=0.8.5,<0.9.0"]
