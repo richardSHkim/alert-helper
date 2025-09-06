@@ -1,7 +1,7 @@
 [project]
 name = "notice-me"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple python notification helper."
 readme = "README.md"
 authors = [
     { name = "richardSHkim", email = "kshtrue95@gmail.com" }
