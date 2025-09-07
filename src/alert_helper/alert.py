@@ -1,7 +1,7 @@
 import traceback
-from typing import Callable, Any, Literal
+from typing import Callable, Any
 
-from .config import APP
+from .config import APP, ON
 from .app import call_slack
 
 
@@ -9,7 +9,7 @@ class alert:
     def __init__(
         self,
         text: str,
-        on: Literal["always", "success", "error"] = "always",
+        on: ON = ON.ALWAYS,
         app: APP = APP.SLACK,
         verbose: bool = False,
     ):
@@ -35,9 +35,9 @@ class alert:
             self.text = "".join(traceback.format_exception(exc_type, exc, tb))
 
         if (
-            self.on == "always"
-            or (self.on == "success" and exc is None)
-            or (self.on == "error" and exc)
+            self.on == ON.ALWAYS
+            or (self.on == ON.SUCCESS and exc is None)
+            or (self.on == ON.ERROR and exc)
         ):
             try:
                 call_fn(self.text)
