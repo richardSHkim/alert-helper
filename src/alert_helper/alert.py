@@ -1,7 +1,7 @@
 import traceback
 from typing import Callable, Any
 
-from .config import AT, ON, APP
+from .types import AT, ON, APP
 from .app import Slack
 
 
