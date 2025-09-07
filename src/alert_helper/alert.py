@@ -8,13 +8,13 @@ from .app import Slack
 class alert:
     def __init__(
         self,
-        text: str,
+        message: str,
         at: AT = AT.BOTH,
         on: ON = ON.ALWAYS,
         app: APP = APP.SLACK,
         verbose: bool = False,
     ):
-        self.text = text
+        self.message = message
         self.at = at
         self.on = on
         self.app = app
@@ -30,24 +30,24 @@ class alert:
     # Context manager
     def __enter__(self):
         if self.at in (AT.BOTH, AT.START):
-            text_start = "START: " + self.text
-            self.caller(text_start)
+            message = "START: " + self.message
+            self.caller(message)
         return self
 
     def __exit__(self, exc_type, exc, tb):
         if self.at in (AT.BOTH, AT.END) or exc:
-            # replace text with traceback if exception is occurred
+            # replace message with traceback if exception is occurred
             if exc:
-                text_end = "".join(traceback.format_exception(exc_type, exc, tb))
+                message = "ERROR: " + "".join(traceback.format_exception(exc_type, exc, tb))
             else:
-                text_end = "END: " + self.text
+                message = "END: " + self.message
 
             if (
                 self.on == ON.ALWAYS
                 or (self.on == ON.SUCCESS and exc is None)
                 or (self.on == ON.ERROR and exc)
             ):
-                self.caller(text_end)
+                self.caller(message)
         return False
 
     # Decorator
