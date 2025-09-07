@@ -35,7 +35,7 @@ class alert:
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        if self.at in (AT.BOTH, AT.END):
+        if self.at in (AT.BOTH, AT.END) or exc:
             # replace text with traceback if exception is occurred
             if exc:
                 text_end = "".join(traceback.format_exception(exc_type, exc, tb))
