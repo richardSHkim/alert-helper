@@ -1,20 +1,22 @@
 import pytest
 from alert_helper import alert
+from alert_helper.types import AT, ON
 
 
 def test_noticeme_decorator_success():
-    @alert("test-job")
-    def dummy():
-        x = 1
-        x += 1
-
-    dummy()
+    for on in ON:
+        for at in AT:
+            @alert(f"test success on {on.value}, at {at.value}", on=on, at=at)
+            def dummy():
+                pass
+            dummy()
 
 
 def test_noticeme_decorator_error():
-    @alert("test-job")
-    def dummy():
-        with pytest.raises(ValueError):
-            raise ValueError("boom")
-
-    dummy()
+    for on in ON:
+        for at in AT:
+            @alert(f"test error on {on.value}, at {at.value}", on=on, at=at)
+            def dummy():
+                with pytest.raises(ValueError):
+                    raise ValueError("boom")
+            dummy()

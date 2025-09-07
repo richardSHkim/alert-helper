@@ -1,14 +1,19 @@
 import pytest
 from alert_helper import alert
+from alert_helper.types import AT, ON
 
 
 def test_noticeme_context_success():
-    with alert("test-job", verbose=True):
-        x = 1
-        x += 1
+    for on in ON:
+        for at in AT:
+            with alert(f"test success on {on.value}, at {at.value}", on=on, at=at):
+                pass
 
 
 def test_noticeme_context_error():
-    with pytest.raises(ValueError):
-        with alert("test-job", verbose=True):
-            raise ValueError("boom")
+    for on in ON:
+        for at in AT:
+            with alert(f"test error on {on.value}, at {at.value}", on=on, at=at):
+                with pytest.raises(ValueError):
+                    with alert("test-job", verbose=True):
+                        raise ValueError("boom")
