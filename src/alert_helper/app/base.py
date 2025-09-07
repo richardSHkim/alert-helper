@@ -1,17 +1,17 @@
 class BaseApp:
-    def __init__(self):
-        pass
+    def __init__(self, verbose: bool):
+        self.verbose = verbose
 
-    def __call__(self, text: str, verbose: bool):
+    def __call__(self, text: str):
         try:
-            self._call_api(text)
-            if verbose:
+            self._alert(text)
+            if self.verbose:
                 print(f"successfully called {self} alarm")
         except Exception as e:
-            if verbose:
+            if self.verbose:
                 print(f"failed to call {self} alarm: {e}")
 
-    def _call_api(self, text: str):
+    def _alert(self, text: str):
         raise NotImplementedError
 
     def __repr__(self):

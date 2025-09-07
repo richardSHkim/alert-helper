@@ -2,7 +2,7 @@ import traceback
 from typing import Callable, Any
 
 from .config import APP, ON
-from .app import call_slack
+from .app import Slack
 
 
 class alert:
@@ -18,18 +18,18 @@ class alert:
         self.app = app
         self.verbose = verbose
 
-    # Context manager
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc, tb):
         if self.app is APP.SLACK:
-            call_fn = call_slack
+            self.caller = Slack(verbose=self.verbose)
         else:
             raise NotImplementedError(
                 f"Notice for {self.app.value} has not been implemented."
             )
 
+    # Context manager
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
         # replace text with traceback if exception is occurred
         if exc:
             self.text = "".join(traceback.format_exception(exc_type, exc, tb))
@@ -39,13 +39,7 @@ class alert:
             or (self.on == ON.SUCCESS and exc is None)
             or (self.on == ON.ERROR and exc)
         ):
-            try:
-                call_fn(self.text)
-                if self.verbose:
-                    print(f"Call {self.app.value} notification successed.")
-            except Exception as e:
-                if self.verbose:
-                    print(f"Call {self.app.value} notification failed: {e}")
+            self.caller(self.text)
         return False
 
     # Decorator

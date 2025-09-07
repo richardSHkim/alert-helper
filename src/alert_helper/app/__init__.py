@@ -1,6 +1,6 @@
-from .slack import call_slack
+from .slack import Slack
 
 
 __all__ = [
-    "call_slack",
+    "Slack",
 ]
