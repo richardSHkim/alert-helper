@@ -13,12 +13,14 @@ class alert:
         on: ON = ON.ALWAYS,
         app: APP = APP.SLACK,
         verbose: bool = False,
+        disable: bool = False,
     ):
         self.message = message
         self.at = at
         self.on = on
         self.app = app
         self.verbose = verbose
+        self.disable = disable
 
         if self.app is APP.SLACK:
             self.caller = Slack(verbose=self.verbose)
@@ -29,13 +31,13 @@ class alert:
 
     # Context manager
     def __enter__(self):
-        if self.at in (AT.BOTH, AT.START):
+        if self.at in (AT.BOTH, AT.START) and not self.disable:
             message = "START: " + self.message
             self.caller(message)
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        if self.at in (AT.BOTH, AT.END) or exc:
+        if (self.at in (AT.BOTH, AT.END) or exc) and not self.disable:
             # replace message with traceback if exception is occurred
             if exc:
                 message = "ERROR: " + "".join(traceback.format_exception(exc_type, exc, tb))
