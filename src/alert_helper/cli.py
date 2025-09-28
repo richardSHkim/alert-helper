@@ -8,7 +8,7 @@ from .app import Slack
 def main(argv: List[str] | None = None):
     parser = argparse.ArgumentParser(prog="alert")
     parser.add_argument("message", type=str, default="alert")
-    parser.add_argument("--app", type=str, default=APP.SLACK, choices=list(APP))
+    parser.add_argument("--app", type=APP, default=APP.SLACK, choices=list(APP))
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--disable", action="store_true")
     args, _ = parser.parse_known_args(argv)
