@@ -22,11 +22,11 @@ class alert:
         self.verbose = verbose
         self.disable = disable
 
-        if self.app is APP.SLACK:
+        if self.app == APP.SLACK:
             self.caller = Slack(verbose=self.verbose)
         else:
             raise NotImplementedError(
-                f"Notice for {self.app.value} has not been implemented."
+                f"Notice for {self.app} has not been implemented."
             )
 
     # Context manager
